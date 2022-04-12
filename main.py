@@ -15,6 +15,42 @@
 # Cesar
 from proceso import *
 from fifo import *
+from sjf import *
+
+def bubblesort(list):
+    intercambio = True
+    while intercambio:
+        intercambio = False
+        for i in range(len(list) - 1):
+            if list[i].tiempo_cpu > list[i+1].tiempo_cpu:
+                list[i], list[i+1] = list[i+1], list[i]
+                intercambio = True
+
+def bubblesort2(list):
+    intercambio = True
+    while intercambio:
+        intercambio = False
+        time = min(int(x.tiempo_llegada) for x in list)
+        for i in range(len(list) - 1):
+            print(time)
+            if int(list[i].tiempo_llegada) <= time:
+                time = time + list[i].tiempo_cpu
+                
+            else:
+                list[i], list[i+1] = list[i+1], list[i]
+                intercambio = True
+                
+                
+                
+                
+              
+
+            
+                
+               
+
+            
+            
 
 def main():
     number_processes = int(input("\nDigitar el numero de procesos que interacturan(Min 4 - Max 8): "))
@@ -30,11 +66,13 @@ def main():
         prioridad = int(input("Digite la prioridad del proceso: "))
         list_procesos.append(Proceso(nombre,tiempo_llegada,tiempo_cpu,prioridad))
 
-    lista_ordenada = sorted(list_procesos, key=lambda x: x.tiempo_llegada)
 
-    fifo(lista_ordenada)
-    for i in lista_ordenada:
-        i.show_all_info()
+    # fifo(list_procesos)
+    sjf(list_procesos, number_processes)
+    # bubblesort(list_procesos)
+    # bubblesort2(list_procesos)
+
+
   
 
     
