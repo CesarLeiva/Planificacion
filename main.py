@@ -16,6 +16,8 @@
 from proceso import *
 from fifo import *
 from sjf import *
+from prioridad import *
+
 
 def bubblesort(list):
     intercambio = True
@@ -42,16 +44,6 @@ def bubblesort2(list):
                 
                 
                 
-                
-              
-
-            
-                
-               
-
-            
-            
-
 def main():
     number_processes = int(input("\nDigitar el numero de procesos que interacturan(Min 4 - Max 8): "))
 
@@ -68,10 +60,8 @@ def main():
 
 
     # fifo(list_procesos)
-    sjf(list_procesos, number_processes)
-    # bubblesort(list_procesos)
-    # bubblesort2(list_procesos)
-
+    # sjf(list_procesos, number_processes)
+    prioridad_al(list_procesos, number_processes)
 
   
 

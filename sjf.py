@@ -1,41 +1,4 @@
-from operator import itemgetter, attrgetter
-
-def bubblesort(list):
-    intercambio = True
-    while intercambio:
-        intercambio = False
-        for i in range(len(list) - 1):
-            if list[i].tiempo_cpu > list[i+1].tiempo_cpu:
-                list[i], list[i+1] = list[i+1], list[i]
-                intercambio = True
-    return list
-
-
-def bubblesort2(list):
-    intercambio = True
-    while intercambio:
-        time = min(int(x.tiempo_llegada) for x in list)
-        intercambio = False
-        for i in range(len(list) - 1):
-            list[i].completed = True
-            print(time)
-            count = 0
-            if int(list[i].tiempo_llegada) <= time:
-                for j in range(len(list) - 1):
-                    if list[i].tiempo_cpu > list[j].tiempo_cpu and list[j].completed == False:
-                        list[i], list[i+1] = list[i+1], list[i]
-                        intercambio = True
-                        count+= 1
-                if count >= 1:
-                    list[i].completed = True
-                    time = time + list[i].tiempo_cpu
-            else:
-                list[i], list[i+1] = list[i+1], list[i]
-                intercambio = True
-                
-    return list
-
-def tiempo_llegada(list, n):
+def sjf(list, n):
     procesos_completados = 0
     time = min(int(x.tiempo_llegada) for x in list)
     while procesos_completados < n:
@@ -61,8 +24,8 @@ def tiempo_llegada(list, n):
     return list
 
 
-def sjf(list, n):
-    list = tiempo_llegada(list, n)
+def sjf_al(list, n):
+    list = sjf(list, n)
     for proceso in list:
         proceso.show_all_info()
         

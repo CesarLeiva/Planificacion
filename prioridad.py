@@ -1,4 +1,4 @@
-def tiempo_llegada(list, n):
+def prios(list, n):
     procesos_completados = 0
     time = min(int(x.tiempo_llegada) for x in list)
     while procesos_completados < n:
@@ -24,8 +24,8 @@ def tiempo_llegada(list, n):
     return list
 
 
-def sjf(list, n):
-    list = tiempo_llegada(list, n)
+def prioridad_al(list, n):
+    list = prios(list, n)
     for proceso in list:
         proceso.show_all_info()
         
