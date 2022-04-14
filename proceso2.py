@@ -24,14 +24,14 @@ class Proceso2:
     def set_values_ex(self):
         lista_tiempo_final = self.tiempos.copy()
         lista_tiempo_comienzo = self.tiempos.copy()
-        tamaño_lista = len(self.tiempos)
-        for i in range(tamaño_lista - 1):
-             if self.tiempos[i] + 1  == self.tiempos[i + 1]:
-                 lista_tiempo_final.pop(i)
+        # tamaño_lista = len(self.tiempos)
+        # for i in range(tamaño_lista - 1):
+        #      if self.tiempos[i] + 1  == self.tiempos[i + 1]:
+        #          lista_tiempo_final.pop(i)
 
-        for i in reversed(range(tamaño_lista)): 
-            if self.tiempos[i] == self.tiempos[i-1] + 1:
-                lista_tiempo_comienzo.pop(i)
+        # for i in reversed(range(tamaño_lista)): 
+        #     if self.tiempos[i] == self.tiempos[i-1] + 1:
+        #         lista_tiempo_comienzo.pop(i)
 
         self.tiempo_comienzo = lista_tiempo_comienzo
         self.tiempo_fin = lista_tiempo_final
