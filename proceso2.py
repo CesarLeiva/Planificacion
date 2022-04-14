@@ -8,6 +8,7 @@ class Proceso2:
         self.prioridad = prioridad 
         self.completed = False
         self.tiempo_transcurido = 0
+        self.tiempos = []
     
     def show_basic_info(self):
         print(f"\nProceso con nombre: {self.nombre}")
@@ -21,15 +22,24 @@ class Proceso2:
         self.tiempo_espera =  self.tiempo_comienzo - self.tiempo_llegada
     
     def set_values_ex(self):
-        lista_tiempo = self.tiempos
-        for i in range(len(lista_tiempo)):
-            if lista_tiempo[i] + 1 == lista_tiempo[i+1]
+        lista_tiempo_final = self.tiempos.copy()
+        lista_tiempo_comienzo = self.tiempos.copy()
+        tamaño_lista = len(self.tiempos)
+        for i in range(tamaño_lista - 1):
+             if self.tiempos[i] + 1  == self.tiempos[i + 1]:
+                 lista_tiempo_final.pop(i)
+
+        for i in reversed(range(tamaño_lista)): 
+            if self.tiempos[i] == self.tiempos[i-1] + 1:
+                lista_tiempo_comienzo.pop(i)
+
+        self.tiempo_comienzo = lista_tiempo_comienzo
+        self.tiempo_fin = lista_tiempo_final
             
-       
       
-    def set_tiempo_transcurido(self, tiempo_transcurido):
+    def set_tiempo_transcurido(self, tiempo_transcurido, linea_tiempo):
         self.tiempo_transcurido  += tiempo_transcurido
-        self.tiempos.append(tiempo_transcurido)
+        self.tiempos.append(linea_tiempo)
         
 
     def show_all_info(self):

@@ -5,30 +5,28 @@ def prio_ex(list, n):
         for i in range(len(list)):
             count = 0
             if int(list[i].tiempo_llegada) <= time and list[i].completed == False:
+              
                 for j in range(len(list)):
-                    if list[i].prioridad >= list[j].prioridad and list[j].completed == False and int(list[j].tiempo_llegada) <= time and list[i].tiempo_cpu != list[j].tiempo_cpu:
-                        list[i], list[j] = list[j], list[i]
+                    if list[i].nombre != list[j].nombre and list[i].tiempo_cpu > list[j].tiempo_cpu and list[j].completed == False and int(list[j].tiempo_llegada) <= time:
                         count+= 1
-                        print(count, "count", j , i)
-                        break
+                        print(count, "count")
                 
                 if count == 0:
-                    tiempo_comienzo = time
-                    list[i].set_tiempo_transcurido(time)
+                    list[i].set_tiempo_transcurido(1,time)
+                    print(time, "time")
                     time += 1
                     
                     if list[i].tiempo_transcurido == list[i].tiempo_cpu:
                         list[i].completed = True
                         list[i].set_values_ex()
                         procesos_completados += 1 
-                        print(procesos_completados)
+                        print(procesos_completados, "Procesos")
 
-                else:
-                    break
+            print(time, list[i].nombre, list[i].tiempo_transcurido, list[i].tiempos )
     return list
 
 
-def prioridad_al(list, n):
+def prioridad_ex(list, n):
     list = prio_ex(list, n)
     for proceso in list:
         proceso.show_all_info()
